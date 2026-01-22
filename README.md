@@ -186,19 +186,15 @@ Content-Type: application/json
 ### Otomatik Deployment (ARM Template)
 
 ```bash
-# Resource group oluştur
+# resource group oluştur
 az group create --name rg-ai-api --location eastus
 
-# Deploy et
+# deploy et
 az deployment group create \
   --resource-group rg-ai-api \
   --template-file deploy/azure-deploy.json \
   --parameters webAppName=my-ai-api
 ```
-
-### Manuel Deployment
-
-Detaylı deployment adımları için [DEPLOYMENT.md](deploy/DEPLOYMENT.md) dosyasına bakın.
 
 ## 📊 Monitoring ve Analytics
 
@@ -221,18 +217,6 @@ requests
 | order by count_ desc
 ```
 
-### Blob Storage Logs
-
-Her request/response otomatik olarak Blob Storage'a kaydedilir:
-```
-ai-api-logs/
-  └── logs/
-      └── 20260122/
-          ├── request-uuid-1.json
-          ├── request-uuid-2.json
-          └── ...
-```
-
 ## 🔐 Environment Variables
 
 ```bash
@@ -250,20 +234,6 @@ APPINSIGHTS_INSTRUMENTATIONKEY=your-key-here
 APPINSIGHTS_CONNECTION_STRING=InstrumentationKey=...
 ```
 
-## 🎯 Mülakat için Anlatım Noktaları
-
-### Teknik Mimari
-> "Bu projede FastAPI kullanarak bir AI API geliştirdim. Model inference Azure OpenAI Service üzerinden yapılıyor ve uygulama Azure App Service'de host ediliyor. Request/response'lar Blob Storage'da loglanıyor ve Application Insights ile real-time monitoring yapıyorum."
-
-### Azure Entegrasyonu
-> "Projem 4 temel Azure servisi kullanıyor: App Service (hosting), OpenAI Service (AI inference), Blob Storage (data persistence) ve Application Insights (monitoring). Bu servisleri Python SDK'ları ile entegre ettim."
-
-### Production-Ready Özellikler
-> "API'de exception handling, request validation (Pydantic), background tasks (async logging), CORS middleware ve comprehensive logging var. Application Insights ile tüm metrikleri izliyorum."
-
-### Ölçeklenebilirlik
-> "App Service otomatik scaling destekliyor. Blob Storage'da partition key stratejisi kullanarak büyük data volume'leri yönetebilirim. Async/await pattern'i ile concurrent request'leri handle ediyorum."
-
 ## 📚 Kaynaklar
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
@@ -271,14 +241,3 @@ APPINSIGHTS_CONNECTION_STRING=InstrumentationKey=...
 - [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/)
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
 
-## 📝 Lisans
-
-MIT License
-
-## 👤 İletişim
-
-Sorularınız için: [your-email@example.com]
-
----
-
-⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!
