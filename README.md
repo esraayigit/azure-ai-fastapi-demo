@@ -241,3 +241,11 @@ APPINSIGHTS_CONNECTION_STRING=InstrumentationKey=...
 - [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/)
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
 
+## 📝 Lisans
+
+MIT License
+
+---
+
+⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!
+
