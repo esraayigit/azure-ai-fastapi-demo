@@ -189,7 +189,7 @@ Content-Type: application/json
 # resource group oluştur
 az group create --name rg-ai-api --location eastus
 
-# deploy et
+# Deploy et
 az deployment group create \
   --resource-group rg-ai-api \
   --template-file deploy/azure-deploy.json \
@@ -241,3 +241,10 @@ APPINSIGHTS_CONNECTION_STRING=InstrumentationKey=...
 - [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/)
 - [Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)
 
+## 📝 Lisans
+
+MIT License
+
+---
+
+⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!

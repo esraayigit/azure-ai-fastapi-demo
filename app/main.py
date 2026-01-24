@@ -7,7 +7,7 @@ import uvicorn
 import logging
 import time
 
-from app.routers import health, ai_endpoints
+from app.routers import health, ai_endpoints, image_endpoints
 from app.config import settings
 from app.services.monitoring import log_request_to_insights
 
@@ -76,6 +76,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 # Include routers
 app.include_router(health.router, tags=["Health"])
 app.include_router(ai_endpoints.router, prefix="/api/v1", tags=["AI Services"])
+app.include_router(image_endpoints.router, prefix="/api/v1", tags=["Image Classification"])
 
 
 @app.on_event("startup")
