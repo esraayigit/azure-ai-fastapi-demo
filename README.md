@@ -248,3 +248,7 @@ MIT License
 ---
 
 ⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdb40f406504290a6edc600f46d002513fef950a
