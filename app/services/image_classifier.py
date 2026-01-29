@@ -17,7 +17,7 @@ class ImageClassifierService:
         """Initialize YOLO model"""
         self.model = None
         self.model_path = Path(model_path)
-        self.classes = ["lying", "standing", "sitting"]
+        self.classes = ["lying", "standing", "sitting", "fallen"]
         
         try:
             # Try to load YOLO model
@@ -53,29 +53,29 @@ class ImageClassifierService:
             return self._mock_classification()
         
         try:
-            # Load image
+            # load image
             image = Image.open(io.BytesIO(image_bytes))
             
-            # Run inference
+            # run inference
             results = self.model(image, verbose=False)
             
-            # Get predictions
+            # get predictions
             if len(results) > 0 and len(results[0].boxes) > 0:
-                # Get the best detection
+                # get the best detection
                 boxes = results[0].boxes
                 confidences = boxes.conf.cpu().numpy()
                 classes = boxes.cls.cpu().numpy()
                 
-                # Find highest confidence detection
+                # find highest confidence detection
                 best_idx = confidences.argmax()
                 best_class_idx = int(classes[best_idx])
                 best_confidence = float(confidences[best_idx])
                 
-                # Get class name
+                # get class name
                 class_names = results[0].names
                 predicted_class = class_names[best_class_idx]
                 
-                # Calculate scores for all classes
+                # calculate scores for all classes
                 all_scores = {class_names[i]: 0.0 for i in range(len(class_names))}
                 for cls_idx, conf in zip(classes, confidences):
                     cls_name = class_names[int(cls_idx)]
@@ -92,7 +92,7 @@ class ImageClassifierService:
                 logger.info(f"Classification result: {predicted_class} ({best_confidence:.2f})")
                 return result
             else:
-                # No detections
+                # no detections
                 return {
                     "pose": "unknown",
                     "confidence": 0.0,
@@ -130,5 +130,5 @@ class ImageClassifierService:
         }
 
 
-# Singleton instance
+# singleton instance
 image_classifier = ImageClassifierService()
