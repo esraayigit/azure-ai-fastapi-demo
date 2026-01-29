@@ -1,0 +1,2 @@
+# bu dosya models klasörünün git'te kalmasını sağlar
+# model dosyaları (.pt, .onnx) .gitignore'da olduğu için yüklenmez
