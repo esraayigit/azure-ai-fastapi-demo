@@ -1,6 +1,6 @@
 # Azure AI FastAPI Demo
 
-🚀 **FastAPI tabanlı AI API** - Azure cloud servisleri ile entegre duygu analizi, metin sınıflandırma ve AI chat uygulaması.
+🚀 **FastAPI tabanlı AI API** - Azure cloud servisleri ile entegre AI uygulaması.
 
 ## 📋 Proje Hakkında
 
@@ -248,7 +248,3 @@ MIT License
 ---
 
 ⭐ Bu projeyi beğendiyseniz star vermeyi unutmayın!
-<<<<<<< HEAD
-=======
-
->>>>>>> fdb40f406504290a6edc600f46d002513fef950a
