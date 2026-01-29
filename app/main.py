@@ -7,18 +7,18 @@ import uvicorn
 import logging
 import time
 
-from app.routers import health, ai_endpoints, image_endpoints
+from app.routers import health, ai_endpoints, image_endpoints, auth
 from app.config import settings
 from app.services.monitoring import log_request_to_insights
 
-# Configure logging
+# configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
-# Initialize FastAPI app
+# initialize FastAPI app
 app = FastAPI(
     title="Azure AI FastAPI Demo",
     description="AI API with Azure AI Services, Blob Storage, and Application Insights",
@@ -37,7 +37,7 @@ app.add_middleware(
 )
 
 
-# Middleware for request logging and monitoring
+# middleware for request logging and monitoring
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     """Log all requests to Application Insights"""
@@ -47,7 +47,7 @@ async def log_requests(request: Request, call_next):
     
     process_time = time.time() - start_time
     
-    # Log to Application Insights
+    # log to Application Insights
     log_request_to_insights(
         method=request.method,
         path=request.url.path,
@@ -59,7 +59,7 @@ async def log_requests(request: Request, call_next):
     return response
 
 
-# Exception handler
+# exception handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     """Global exception handler"""
@@ -73,8 +73,9 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 
-# Include routers
+# include routers
 app.include_router(health.router, tags=["Health"])
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
 app.include_router(ai_endpoints.router, prefix="/api/v1", tags=["AI Services"])
 app.include_router(image_endpoints.router, prefix="/api/v1", tags=["Image Classification"])
 

@@ -28,6 +28,12 @@ class Settings(BaseSettings):
     APPINSIGHTS_INSTRUMENTATIONKEY: str = os.getenv("APPINSIGHTS_INSTRUMENTATIONKEY", "")
     APPINSIGHTS_CONNECTION_STRING: str = os.getenv("APPINSIGHTS_CONNECTION_STRING", "")
     
+    # JWT Authentication
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production-min-32-chars")
+    JWT_ALGORITHM: str = "HS256"
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    JWT_REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    
     # API Configuration
     MAX_TEXT_LENGTH: int = 5000
     REQUEST_TIMEOUT: int = 30
